@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <header>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom css -->
+    <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="{{ url_for('static', filename='css/custom_v6.css') }}" rel="stylesheet">
+    <!-- Custom css -->
+
+    <!-- JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/nicescroll.js') }}"></script><!-- jquery nice scroll-->
+
+    <!-- JS -->
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/fav_icon.png') }}">
+
+    <title>Religion Test Guide</title>
+  </header>
+
+  <body data-spy="scroll" data-target="#ha-header">
+
+    <!-- Navigation bar starts here -->
+
+    <!-- <div class="navbar navbar-default navbar-fixed-top" id="ha-header"> -->
+    <div class="ha-header ha-header-small" id="ha-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="navbar-collapse collapse ">
+              <ul class="nav navbar-nav navbar-right">
+                <li id="reload"><a href="">Reload</a></li>
+                <li id="switch">
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="modeSwitch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span id="mode">Random</span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="modeSwitch">
+                        <li><a href="/t0">Random</a></li>
+                        <li><a href="t1">Test 1</a></li>
+                        <li><a href="t2">Test 2</a></li>
+                        <li><a href="t3">Test 3</a></li>
+                        <li><a href="t4">Test 4</a></li>
+                        <li><a href="t5">Test 5</a></li>
+                        <li><a href="t6">Test 6</a></li>
+                        <li><a href="q13">Quiz 13</a></li>
+                      </ul>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation bar ends here -->
+
+    {% block sidePanel %} {% endblock %}
+
+    {% block body %} {% endblock %}
+
+    {% block scripts %} {% endblock %}
+  </body>
+</html>

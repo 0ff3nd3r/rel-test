@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container index-panel" style="margin-top: 300px; display: flex; background: inherit; background-attachment: fixed;">
+  <div class="row" style="margin: auto; padding: 15px;">
+    <div class="col-md-12">
+      <span>Enter desired number of questions:</span>
+      <input type="text" id="quest_input" placeholder="Max 305">
+      <button type="button" id="quest-submit" class="btn">Submit</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src=" {{ url_for('static', filename='js/custom.js') }}"></script><!-- Custom JavaScript  -->
+<script src="{{ url_for('static', filename='js/test.js') }}"></script><!-- Custom JavaScript  -->
+{% endblock %}

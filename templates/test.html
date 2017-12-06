@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container" style="background: inherit; background-attachment: fixed; ">
+  <div class="row" style="background: inherit; background-attachment: fixed; ">
+    <div class="col-md-12 main">
+      <div>
+        {% if not test %}
+          <h1 style="position: relative;"> Random </h1>
+        {% else %}
+            <h1 style="position: relative;"> Test {{ test }} </h1>
+        {% endif %}
+
+        <ul class="questions-list">
+
+          {% for question in questions %}
+
+            {% set index = loop.index %}
+
+            <li class="question" id="q{{ index }}" data-qnum="{{ index }}" data-qinfo="{{ question.info }}"">
+              <div class="wrapper">
+                <div class="container-fluid">
+                  <div class="row quest-number">
+                    <div class="col-md-12"><span><b>Question #{{ index }}</b></span></div>
+                  </div>
+                  <div class="row quest-text">
+                    <div class="col-md-12"><span>{{ question.text }}</span></div>
+                  </div>
+                  <div class="row quest-choices">
+                    <div class="col-md-12">
+
+                      {% for choice in question.choices %}
+
+                        <div class="radio">
+                          <label><input type="radio" name="rad{{ index }}" data-correct="{{ choice.correct }}">{{ choice.text }}</label>
+                        </div>
+
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+          {% endfor %}
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block sidePanel %}
+
+<div class="panel panel-default" style="background: inherit; background-attachment: fixed; position: fixed;">
+  <div class="panel-body" style="background: inherit; background-attachment: fixed;">
+    <div class="container-fluid" style="background: inherit; background-attachment: fixed;">
+
+      <div class="row">
+
+      {% if not questions|length // 10 %}
+
+        {% for i in range(1, questions|length % 10 + 1) %}
+          <div class="col-sm-1"><a data-quest="{{ i }}" href="#q{{ i }}">{{ i }}</a></div>
+        {% endfor %}
+
+      {% else %}
+
+        {% for i in range(1, 11) %}
+          <div class="col-sm-1"><a data-quest="{{ i }}" href="#q{{ i }}">{{ i }}</a></div>
+        {% endfor %}
+
+      {% endif %}
+
+      </div>
+
+      {% if (questions|length) / 10 > 1 %}
+
+        {% for i in range(11, questions|length + 1 ) %}
+
+          {% if i == 11 %}
+            <div class="row">
+          {% endif %}
+
+            <div class="col-sm-1"><a data-quest="{{ i }}" href="#q{{ i }}">{{ i }}</a></div>
+
+          {% if not i % 10 %}
+            </div>
+          {% endif %}
+
+          {% if not i % 10 %}
+            <div class="row">
+          {% endif %}
+
+        {% endfor %}
+
+          </div>
+
+      {% endif %}
+
+
+      <div class="row" style="padding-top: 5px;">
+        <div class="col-sm-6" style="display: flex;">
+          <button type="button" id="btn-clear" class="btn">Clear</button>
+        </div>
+        <div class="col-sm-6" style="display: flex;">
+          <button type="button" id="btn-submit" class="btn">Submit</button>
+        </div>
+      </div>
+      <div class="row" style="padding-top: 5px;">
+        <div class="col-sm-12">
+          <span id="side-text"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src=" {{ url_for('static', filename='js/custom.js') }}"></script><!-- Custom JavaScript  -->
+<script src="{{ url_for('static', filename='js/test.js') }}"></script><!-- Custom JavaScript  -->
+{% endblock %}
